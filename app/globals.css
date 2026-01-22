@@ -2,15 +2,94 @@
 @tailwind components;
 @tailwind utilities;
 
+/* -----------------------------------
+   Elegant Luxury Theme
+------------------------------------ */
 :root{
   --bg: 248 248 249;
   --card: 255 255 255;
-  --ink: 17 24 39;
-  --muted: 107 114 128;
-  --ring: 201 162 96; /* warm gold */
+  --ink: 18 18 18;
+  --muted: 115 115 115;
+
+  /* warm antique gold */
+  --ring: 201 162 96;
+
+  --radius: 28px;
 }
 
+/* base typography */
 body{
+  font-family: var(--font-sans), system-ui, sans-serif;
   background: rgb(var(--bg));
   color: rgb(var(--ink));
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4{
+  font-family: var(--font-serif), serif;
+  letter-spacing: -0.015em;
+}
+
+/* soft selection */
+::selection{
+  background: rgba(201,162,96,.25);
+}
+
+/* elegant focus */
+:focus-visible{
+  outline: 2px solid rgba(201,162,96,.45);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+/* subtle links */
+a{
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1.25px;
+}
+
+/* -----------------------------------
+   Luxury helpers
+------------------------------------ */
+.lux-card{
+  border-radius: var(--radius);
+  border: 1px solid rgba(0,0,0,.06);
+  background: rgba(255,255,255,.78);
+  box-shadow: 0 10px 30px rgba(0,0,0,.06);
+  backdrop-filter: blur(10px);
+}
+
+.lux-ring{
+  border-radius: 9999px;
+  border: 1px solid rgba(201,162,96,.55);
+}
+
+.lux-ring.soft{
+  border-color: rgba(201,162,96,.25);
+}
+
+.lux-kicker{
+  font-size: 12px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: rgba(0,0,0,.45);
+}
+
+.lux-lift{
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+.lux-lift:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px rgba(0,0,0,.08);
+}
+
+/* respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  *{
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
 }
