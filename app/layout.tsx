@@ -18,14 +18,10 @@ export const metadata = {
     "Quiet luxury hair and beauty salon in Brainerd, Minnesota. Cuts, color, waxing, and restorative scalp therapy.",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
-      <body>{children}</body>
+    <html lang="en">
+      <body className={`${playfair.variable} ${inter.variable}`}>{children}</body>
     </html>
   );
 }
