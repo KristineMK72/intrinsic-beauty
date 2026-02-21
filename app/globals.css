@@ -2,181 +2,188 @@
 @tailwind components;
 @tailwind utilities;
 
-/* =====================================================
-   LUXURY SYSTEM (minimal, editorial, champagne)
-   - Background: warm pearl
-   - Accents: champagne gold
-   - Surfaces: glass + soft shadow
-===================================================== */
+/* =========================================================
+   Intrinsic Beauty — Quiet Luxury System
+   - warm pearl background + subtle gold glow
+   - glass surfaces
+   - editorial typography + polish
+========================================================= */
 
 :root {
   --ring: 201 162 96; /* champagne gold */
-  --ink: 16 16 18;    /* near-black */
-  --muted: 99 102 107;
-  --pearl: 247 245 241; /* warm background */
+  --ink: 16 16 18;
+  --pearl: 247 245 241;
   --paper: 255 255 255;
+  --stroke: 0 0 0;
 }
 
 /* Base reset */
-* { -webkit-tap-highlight-color: transparent; }
-html, body { height: 100%; }
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   color: rgb(var(--ink));
-  font-family: var(--font-body), ui-sans-serif, system-ui, -apple-system, Segoe UI,
-    Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-  text-rendering: optimizeLegibility;
+  font-family: var(--font-body), ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+    Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  text-rendering: geometricPrecision;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* Background: warm pearl + gold glow */
+  /* Warm pearl + soft spotlighting */
   background:
-    radial-gradient(1100px 520px at 50% -220px, rgba(201,162,96,.24), transparent 60%),
-    radial-gradient(900px 460px at 12% 10%, rgba(0,0,0,.06), transparent 60%),
-    radial-gradient(900px 460px at 88% 18%, rgba(0,0,0,.05), transparent 60%),
-    linear-gradient(180deg, rgba(247,245,241,1), rgba(243,241,237,1));
-}
-
-/* Kill default “blue link + underline” look */
-a {
-  color: inherit;
-  text-decoration: none;
+    radial-gradient(1100px 520px at 50% -220px, rgba(201, 162, 96, 0.24), transparent 60%),
+    radial-gradient(900px 460px at 12% 10%, rgba(0, 0, 0, 0.06), transparent 60%),
+    radial-gradient(900px 460px at 88% 18%, rgba(0, 0, 0, 0.05), transparent 60%),
+    linear-gradient(180deg, rgba(247, 245, 241, 1), rgba(243, 241, 237, 1));
 }
 
 /* Typography */
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-family: var(--font-display), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   letter-spacing: -0.02em;
 }
 
-p { color: rgba(0,0,0,.68); }
+p {
+  color: rgba(0, 0, 0, 0.68);
+}
 
-::selection { background: rgba(201,162,96,.35); }
+::selection {
+  background: rgba(201, 162, 96, 0.35);
+}
 
-/* Small caps luxury label */
+/* Nice default underline behavior (don’t remove underlines globally) */
+a {
+  text-underline-offset: 4px;
+}
+
+/* =========================================================
+   Luxury primitives (your app uses these classes)
+========================================================= */
 .lux-kicker {
   font-family: var(--font-body);
-  font-size: .68rem;
-  letter-spacing: .34em;
+  font-size: 0.68rem;
+  letter-spacing: 0.34em;
   text-transform: uppercase;
-  color: rgba(0,0,0,.48);
+  color: rgba(0, 0, 0, 0.48);
   font-weight: 700;
 }
 
-/* Elegant divider */
 .lux-divider {
   height: 1px;
   width: 100%;
-  background: linear-gradient(to right, transparent, rgba(201,162,96,.60), transparent);
+  background: linear-gradient(to right, transparent, rgba(201, 162, 96, 0.6), transparent);
 }
 
 /* Premium “glass” surface */
 .lux-surface {
+  position: relative;
   border-radius: 28px;
-  border: 1px solid rgba(0,0,0,.06);
-  background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.82));
-  box-shadow:
-    0 14px 45px rgba(0,0,0,.08),
-    0 1px 0 rgba(255,255,255,.70) inset;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.82));
+  box-shadow: 0 14px 45px rgba(0, 0, 0, 0.08), 0 1px 0 rgba(255, 255, 255, 0.7) inset;
   backdrop-filter: blur(14px);
 }
 
-/* Add a soft gold edge glow to surfaces (subtle) */
-.lux-surface {
-  position: relative;
-}
 .lux-surface::after {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
   pointer-events: none;
-  box-shadow: 0 0 0 1px rgba(201,162,96,.12) inset;
-  opacity: .8;
+  box-shadow: 0 0 0 1px rgba(201, 162, 96, 0.12) inset;
+  opacity: 0.85;
 }
 
-/* Make “chip” and button typography feel crisp */
-button, a, input, textarea {
-  font-family: var(--font-body);
-}
-
-/* Give common underlined links a luxe style */
-a.underline,
-a[href^="tel:"],
-a[href^="sms:"] {
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 4px;
-  text-decoration-color: rgba(201,162,96,.55);
-}
-a.underline:hover,
-a[href^="tel:"]:hover,
-a[href^="sms:"]:hover {
-  text-decoration-color: rgba(201,162,96,.85);
-}
-
-/* =====================================================
-   Sparkle + shimmer overlay (champagne, not glitter)
-===================================================== */
+/* Page wrapper class you’re using */
 .sparkle-bg {
   position: relative;
   isolation: isolate;
 }
 
-/* Tiny “sparkle dots” layer */
+/* Tiny champagne “sparkle” dots layer */
 .sparkle-bg::after {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: .18;
+  opacity: 0.18;
   background:
-    radial-gradient(2px 2px at 10% 18%, rgba(201,162,96,.55), transparent 60%),
-    radial-gradient(1.5px 1.5px at 28% 32%, rgba(201,162,96,.45), transparent 60%),
-    radial-gradient(2px 2px at 44% 22%, rgba(201,162,96,.50), transparent 60%),
-    radial-gradient(1.5px 1.5px at 63% 38%, rgba(201,162,96,.40), transparent 60%),
-    radial-gradient(2px 2px at 77% 26%, rgba(201,162,96,.55), transparent 60%),
-    radial-gradient(1.5px 1.5px at 90% 40%, rgba(201,162,96,.40), transparent 60%),
-    radial-gradient(2px 2px at 18% 70%, rgba(201,162,96,.45), transparent 60%),
-    radial-gradient(1.5px 1.5px at 52% 66%, rgba(201,162,96,.38), transparent 60%),
-    radial-gradient(2px 2px at 84% 74%, rgba(201,162,96,.50), transparent 60%);
+    radial-gradient(2px 2px at 10% 18%, rgba(201, 162, 96, 0.55), transparent 60%),
+    radial-gradient(1.5px 1.5px at 28% 32%, rgba(201, 162, 96, 0.45), transparent 60%),
+    radial-gradient(2px 2px at 44% 22%, rgba(201, 162, 96, 0.5), transparent 60%),
+    radial-gradient(1.5px 1.5px at 63% 38%, rgba(201, 162, 96, 0.4), transparent 60%),
+    radial-gradient(2px 2px at 77% 26%, rgba(201, 162, 96, 0.55), transparent 60%),
+    radial-gradient(1.5px 1.5px at 90% 40%, rgba(201, 162, 96, 0.4), transparent 60%),
+    radial-gradient(2px 2px at 18% 70%, rgba(201, 162, 96, 0.45), transparent 60%),
+    radial-gradient(1.5px 1.5px at 52% 66%, rgba(201, 162, 96, 0.38), transparent 60%),
+    radial-gradient(2px 2px at 84% 74%, rgba(201, 162, 96, 0.5), transparent 60%);
 }
 
-/* Soft moving shimmer (very subtle) */
 @media (prefers-reduced-motion: no-preference) {
   .sparkle-bg::after {
     animation: shimmer 10s ease-in-out infinite alternate;
   }
   @keyframes shimmer {
-    from { opacity: .14; filter: blur(0px); }
-    to   { opacity: .22; filter: blur(.2px); }
+    from {
+      opacity: 0.14;
+      filter: blur(0px);
+    }
+    to {
+      opacity: 0.22;
+      filter: blur(0.2px);
+    }
   }
 }
 
-/* =====================================================
-   Luxury grain (tiny, makes it feel expensive)
-===================================================== */
+/* Luxury grain overlay (subtle) */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  opacity: .06;
+  opacity: 0.06;
   mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg width='180' height='180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.22'/%3E%3C/svg%3E");
 }
 
-/* =====================================================
-   Buttons + focus rings (polished)
-===================================================== */
+/* Focus ring polish */
 :focus-visible {
-  outline: 2px solid rgba(201,162,96,.65);
+  outline: 2px solid rgba(201, 162, 96, 0.65);
   outline-offset: 3px;
   border-radius: 12px;
 }
 
-/* Make iOS “rubber band” feel cleaner */
-html { scroll-behavior: smooth; }
-section { scroll-margin-top: 96px; }
+/* Hero image helpers */
+.hero-frame {
+  border-radius: 28px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.55) inset;
+}
+
+.hero-overlay {
+  background:
+    radial-gradient(800px 420px at 20% 15%, rgba(201, 162, 96, 0.22), transparent 55%),
+    linear-gradient(to top, rgba(0, 0, 0, 0.58), rgba(0, 0, 0, 0.18) 42%, rgba(0, 0, 0, 0.06));
+}
+
+/* Better anchor target spacing under sticky header */
+section {
+  scroll-margin-top: 96px;
+}
