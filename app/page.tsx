@@ -250,125 +250,134 @@ export default function Page() {
       </header>
 
       {/* ======================
-          Hero
-      ======================= */}
-      <section id="top" className="relative">
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-1/2 top-10 h-80 w-80 -translate-x-1/2 rounded-full border border-[rgba(201,162,96,.55)]" />
-          <div className="absolute left-1/2 top-10 h-96 w-96 -translate-x-1/2 rounded-full border border-[rgba(201,162,96,.25)]" />
-        </div>
+    Hero (cinematic image + signature menu)
+======================= */}
+<section id="top" className="relative">
+  <Container>
+    <div className="relative py-10 sm:py-14">
+      <div className="grid gap-6 lg:grid-cols-2">
 
-        <Container>
-          <div className="relative py-10 sm:py-14">
-            <div className="grid gap-6 lg:grid-cols-2">
-              {/* Left: Brand */}
-              <Surface className="p-7">
-                <div className="lux-kicker">Quiet luxury • hair + beauty</div>
+        {/* Left: Cinematic Image Hero */}
+        <div className="heroFrame relative overflow-hidden rounded-[28px] border border-black/10 bg-black">
+          <img
+            src="/hero.JPG"
+            alt="Salon styling hair"
+            className="heroImg absolute inset-0 h-full w-full object-cover"
+          />
 
-                <h1 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">
-                  Intrinsic Beauty
-                </h1>
+          {/* Overlay for legibility */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/35 to-black/75" />
 
-                <GoldDivider />
+          {/* Content */}
+          <div className="relative z-10 flex h-[72vh] min-h-[540px] flex-col justify-end p-7 sm:p-10 text-white">
+            <div className="text-xs tracking-[0.22em] uppercase text-white/80">
+              Quiet luxury • hair + beauty
+            </div>
 
-                <p className="mt-5 max-w-xl text-base text-black/65">
-                  A calm, personal salon experience by{" "}
-                  <span className="font-semibold text-black/80">Katherine Andrews</span>.
-                  Fresh cuts, dimensional color, and restorative scalp care — done with intention.
-                </p>
+            <h1 className="mt-3 text-5xl sm:text-6xl font-light tracking-wide">
+              Intrinsic Beauty
+            </h1>
 
-                <div className="mt-7 flex flex-wrap gap-3">
-                  <Button href={`tel:+1${PHONE_TEL}`}>Call to Book</Button>
-                  <Button
-                    variant="ghost"
-                    href={`https://www.google.com/maps/search/?api=1&query=${MAPS_QUERY}`}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Get Directions
-                  </Button>
-                </div>
+            <p className="mt-4 max-w-xl text-base text-white/85">
+              A calm, personal salon experience in Brainerd — fresh cuts, dimensional color,
+              and restorative scalp care.
+            </p>
 
-                <div className="mt-7 grid gap-4 sm:grid-cols-2">
-                  <div className="rounded-2xl border border-black/5 bg-white/60 p-4">
-                    <div className="lux-kicker">Phone</div>
-                    <a className="mt-2 inline-block text-base font-semibold underline" href={`tel:+1${PHONE_TEL}`}>
-                      {PHONE_DISPLAY}
-                    </a>
-                  </div>
+            <div className="mt-7 flex flex-wrap gap-3">
+              {/* Primary CTA */}
+              <a
+                href={`tel:+1${PHONE_TEL}`}
+                className="inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold bg-white text-black hover:opacity-90 transition"
+              >
+                Book Appointment
+              </a>
 
-                  <div className="rounded-2xl border border-black/5 bg-white/60 p-4">
-                    <div className="lux-kicker">Location</div>
-                    <div className="mt-2 text-sm text-black/70">
-                      <div>{ADDRESS_LINES[0]}</div>
-                      <div>{ADDRESS_LINES[1]}</div>
-                    </div>
-                  </div>
-                </div>
-              </Surface>
+              {/* Secondary CTAs */}
+              <a
+                href={`sms:+1${PHONE_TEL}`}
+                className="inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold border border-white/25 bg-white/10 text-white hover:bg-white/15 transition"
+              >
+                Text to Book
+              </a>
 
-              {/* Right: Signature preview */}
-              <Surface className="p-7">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <div className="lux-kicker">Signature menu</div>
-                    <div className="mt-3 text-2xl font-semibold tracking-tight">Explore pricing</div>
-                    <div className="mt-2 text-sm text-black/55">
-                      Tap a category to preview pricing. For full details, visit the Services page.
-                    </div>
-                  </div>
-                  <span className="hidden sm:inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white/70">
-                    ✦
-                  </span>
-                </div>
+              <a
+                href={`https://www.google.com/maps/search/?api=1&query=${MAPS_QUERY}`}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold border border-white/25 bg-white/10 text-white hover:bg-white/15 transition"
+              >
+                Get Directions
+              </a>
+            </div>
 
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {SERVICE_GROUPS.map((g) => (
-                    <Chip key={g.key} active={activeKey === g.key} onClick={() => setActiveKey(g.key)}>
-                      {g.title}
-                    </Chip>
-                  ))}
-                </div>
-
-                <div className="mt-6">
-                  <div className="flex items-center justify-between gap-4">
-                    <div>
-                      <div className="text-xl font-semibold">{activeGroup.title}</div>
-                      <div className="mt-1 text-sm text-black/55">{activeGroup.subtitle}</div>
-                    </div>
-                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white/70">
-                      →
-                    </span>
-                  </div>
-
-                  <div className="mt-5 divide-y divide-black/5">
-                    {activeGroup.items.map((item) => (
-                      <PriceRow key={item.name} item={item} />
-                    ))}
-                  </div>
-
-                  <div className="mt-6 flex flex-wrap gap-2">
-                    <Button variant="ghost" href={activeGroup.href}>
-                      View {activeGroup.title} Page
-                    </Button>
-                    <Button variant="ghost" href="/services">
-                      View All Services
-                    </Button>
-                  </div>
-
-                  <div className="mt-5 text-sm text-black/55">
-                    Booking tip: call or text{" "}
-                    <a className="underline font-semibold" href={`tel:+1${PHONE_TEL}`}>
-                      {PHONE_DISPLAY}
-                    </a>{" "}
-                    to reserve your spot.
-                  </div>
-                </div>
-              </Surface>
+            <div className="mt-6 text-sm text-white/75">
+              {ADDRESS_LINES[0]} • {ADDRESS_LINES[1]}
             </div>
           </div>
-        </Container>
-      </section>
+        </div>
+
+        {/* Right: Signature preview (your existing panel) */}
+        <Surface className="p-7">
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <div className="lux-kicker">Signature menu</div>
+              <div className="mt-3 text-2xl font-semibold tracking-tight">Explore pricing</div>
+              <div className="mt-2 text-sm text-black/55">
+                Tap a category to preview pricing. For full details, visit the Services page.
+              </div>
+            </div>
+            <span className="hidden sm:inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white/70">
+              ✦
+            </span>
+          </div>
+
+          <div className="mt-5 flex flex-wrap gap-2">
+            {SERVICE_GROUPS.map((g) => (
+              <Chip key={g.key} active={activeKey === g.key} onClick={() => setActiveKey(g.key)}>
+                {g.title}
+              </Chip>
+            ))}
+          </div>
+
+          <div className="mt-6">
+            <div className="flex items-center justify-between gap-4">
+              <div>
+                <div className="text-xl font-semibold">{activeGroup.title}</div>
+                <div className="mt-1 text-sm text-black/55">{activeGroup.subtitle}</div>
+              </div>
+              <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white/70">
+                →
+              </span>
+            </div>
+
+            <div className="mt-5 divide-y divide-black/5">
+              {activeGroup.items.map((item) => (
+                <PriceRow key={item.name} item={item} />
+              ))}
+            </div>
+
+            <div className="mt-6 flex flex-wrap gap-2">
+              <Button variant="ghost" href={activeGroup.href}>
+                View {activeGroup.title} Page
+              </Button>
+              <Button variant="ghost" href="/services">
+                View All Services
+              </Button>
+            </div>
+
+            <div className="mt-5 text-sm text-black/55">
+              Booking tip: call or text{" "}
+              <a className="underline font-semibold" href={`tel:+1${PHONE_TEL}`}>
+                {PHONE_DISPLAY}
+              </a>{" "}
+              to reserve your spot.
+            </div>
+          </div>
+        </Surface>
+      </div>
+    </div>
+  </Container>
+</section>
 
       <div className="lux-divider" />
 
