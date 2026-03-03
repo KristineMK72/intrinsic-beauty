@@ -10,7 +10,9 @@ const PHONE_DISPLAY = "218-330-8125";
 const PHONE_TEL = "12183308125";
 
 const ADDRESS_LINES = ["406 West Washington Street, Suite 2", "Brainerd, MN"];
-const MAPS_QUERY = encodeURIComponent("406 West Washington Street Suite 2, Brainerd, MN");
+const MAPS_QUERY = encodeURIComponent(
+  "406 West Washington Street Suite 2, Brainerd, MN"
+);
 
 /** ======================
  *  Services
@@ -47,7 +49,11 @@ const SERVICE_GROUPS: ServiceGroup[] = [
     items: [
       { name: "Full color", price: "$100" },
       { name: "Refresh color", price: "$80" },
-      { name: "Color transformation", price: "$75/hour", note: "Timing varies by hair length + goals." },
+      {
+        name: "Color transformation",
+        price: "$75/hour",
+        note: "Timing varies by hair length + goals.",
+      },
     ],
   },
   {
@@ -163,7 +169,9 @@ function PriceRow({ item }: { item: ServiceItem }) {
 }
 
 function GoldDivider() {
-  return <div className="mt-5 h-px w-full bg-gradient-to-r from-transparent via-[rgba(201,162,96,.6)] to-transparent" />;
+  return (
+    <div className="mt-5 h-px w-full bg-gradient-to-r from-transparent via-[rgba(201,162,96,.6)] to-transparent" />
+  );
 }
 
 /** ======================
@@ -196,10 +204,13 @@ export default function Page() {
 
   return (
     <main className="min-h-screen sparkle-bg">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
       {/* ======================
-          Top Bar (mobile-safe)
+          Top Bar
       ======================= */}
       <header className="sticky top-0 z-50 border-b border-black/5 bg-white/70 backdrop-blur">
         <Container>
@@ -234,155 +245,142 @@ export default function Page() {
             </div>
           </div>
 
-          {/* Mobile-only quick links */}
           <div className="sm:hidden pb-3 flex gap-4 text-sm">
-            <a className="underline text-black/70" href="/services">
-              Services
-            </a>
-            <a className="underline text-black/70" href="#about">
-              About
-            </a>
-            <a className="underline text-black/70" href="#contact">
-              Contact
-            </a>
+            <a className="underline text-black/70" href="/services">Services</a>
+            <a className="underline text-black/70" href="#about">About</a>
+            <a className="underline text-black/70" href="#contact">Contact</a>
           </div>
         </Container>
       </header>
 
       {/* ======================
-    Hero (cinematic image + signature menu)
-======================= */}
-<section id="top" className="relative">
-  <Container>
-    <div className="relative py-10 sm:py-14">
-      <div className="grid gap-6 lg:grid-cols-2">
+          Hero
+      ======================= */}
+      <section id="top" className="relative">
+        <Container>
+          <div className="py-10 sm:py-14">
+            <div className="grid gap-6 lg:grid-cols-2">
+              {/* Left: Image hero */}
+              <div className="hero-frame hero-cap relative overflow-hidden bg-black">
+                <img
+                  src="/hero.JPG"
+                  alt="Salon styling hair"
+                  className="heroImg absolute inset-0 h-full w-full object-cover"
+                />
+                <div className="hero-overlay absolute inset-0" />
 
-        {/* Left: Cinematic Image Hero */}
-        <div className="heroFrame relative overflow-hidden rounded-[28px] border border-black/10 bg-black">
-          <img
-            src="/hero.JPG"
-            alt="Salon styling hair"
-            className="heroImg absolute inset-0 h-full w-full object-cover"
-          />
+                <div className="relative z-10 flex h-[55vh] min-h-[420px] flex-col justify-end p-7 sm:p-10 text-white">
+                  <div className="text-xs tracking-[0.22em] uppercase text-white/80">
+                    Quiet luxury • hair + beauty
+                  </div>
 
-          {/* Overlay for legibility */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/35 to-black/75" />
+                  <h1 className="mt-3 text-5xl sm:text-6xl font-light tracking-wide">
+                    Intrinsic Beauty
+                  </h1>
 
-          {/* Content */}
-       className="relative z-10 flex h-[55vh] min-h-[420px] flex-col justify-end p-7 sm:p-10 text-white"
-            <div className="text-xs tracking-[0.22em] uppercase text-white/80">
-              Quiet luxury • hair + beauty
-            </div>
+                  <p className="mt-4 max-w-xl text-base text-white/85">
+                    A calm, personal salon experience in Brainerd — fresh cuts, dimensional color,
+                    and restorative scalp care.
+                  </p>
 
-            <h1 className="mt-3 text-5xl sm:text-6xl font-light tracking-wide">
-              Intrinsic Beauty
-            </h1>
+                  <div className="mt-7 flex flex-wrap gap-3">
+                    <a
+                      href={`tel:+1${PHONE_TEL}`}
+                      className="inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold bg-white text-black hover:opacity-90 transition"
+                    >
+                      Book Appointment
+                    </a>
 
-            <p className="mt-4 max-w-xl text-base text-white/85">
-              A calm, personal salon experience in Brainerd — fresh cuts, dimensional color,
-              and restorative scalp care.
-            </p>
+                    <a
+                      href={`sms:+1${PHONE_TEL}`}
+                      className="inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold border border-white/25 bg-white/10 text-white hover:bg-white/15 transition"
+                    >
+                      Text to Book
+                    </a>
 
-            <div className="mt-7 flex flex-wrap gap-3">
-              {/* Primary CTA */}
-              <a
-                href={`tel:+1${PHONE_TEL}`}
-                className="inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold bg-white text-black hover:opacity-90 transition"
-              >
-                Book Appointment
-              </a>
+                    <a
+                      href={`https://www.google.com/maps/search/?api=1&query=${MAPS_QUERY}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold border border-white/25 bg-white/10 text-white hover:bg-white/15 transition"
+                    >
+                      Get Directions
+                    </a>
+                  </div>
 
-              {/* Secondary CTAs */}
-              <a
-                href={`sms:+1${PHONE_TEL}`}
-                className="inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold border border-white/25 bg-white/10 text-white hover:bg-white/15 transition"
-              >
-                Text to Book
-              </a>
-
-              <a
-                href={`https://www.google.com/maps/search/?api=1&query=${MAPS_QUERY}`}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold border border-white/25 bg-white/10 text-white hover:bg-white/15 transition"
-              >
-                Get Directions
-              </a>
-            </div>
-
-            <div className="mt-6 text-sm text-white/75">
-              {ADDRESS_LINES[0]} • {ADDRESS_LINES[1]}
-            </div>
-          </div>
-        </div>
-
-        {/* Right: Signature preview (your existing panel) */}
-        <Surface className="p-7">
-          <div className="flex items-start justify-between gap-4">
-            <div>
-              <div className="lux-kicker">Signature menu</div>
-              <div className="mt-3 text-2xl font-semibold tracking-tight">Explore pricing</div>
-              <div className="mt-2 text-sm text-black/55">
-                Tap a category to preview pricing. For full details, visit the Services page.
+                  <div className="mt-6 text-sm text-white/75">
+                    {ADDRESS_LINES[0]} • {ADDRESS_LINES[1]}
+                  </div>
+                </div>
               </div>
+
+              {/* Right: Signature menu */}
+              <Surface className="p-7">
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <div className="lux-kicker">Signature menu</div>
+                    <div className="mt-3 text-2xl font-semibold tracking-tight">Explore pricing</div>
+                    <div className="mt-2 text-sm text-black/55">
+                      Tap a category to preview pricing. For full details, visit the Services page.
+                    </div>
+                  </div>
+                  <span className="hidden sm:inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white/70">
+                    ✦
+                  </span>
+                </div>
+
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {SERVICE_GROUPS.map((g) => (
+                    <Chip key={g.key} active={activeKey === g.key} onClick={() => setActiveKey(g.key)}>
+                      {g.title}
+                    </Chip>
+                  ))}
+                </div>
+
+                <div className="mt-6">
+                  <div className="flex items-center justify-between gap-4">
+                    <div>
+                      <div className="text-xl font-semibold">{activeGroup.title}</div>
+                      <div className="mt-1 text-sm text-black/55">{activeGroup.subtitle}</div>
+                    </div>
+                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white/70">
+                      →
+                    </span>
+                  </div>
+
+                  <div className="mt-5 divide-y divide-black/5">
+                    {activeGroup.items.map((item) => (
+                      <PriceRow key={item.name} item={item} />
+                    ))}
+                  </div>
+
+                  <div className="mt-6 flex flex-wrap gap-2">
+                    <Button variant="ghost" href={activeGroup.href}>
+                      View {activeGroup.title} Page
+                    </Button>
+                    <Button variant="ghost" href="/services">
+                      View All Services
+                    </Button>
+                  </div>
+
+                  <div className="mt-5 text-sm text-black/55">
+                    Booking tip: call or text{" "}
+                    <a className="underline font-semibold" href={`tel:+1${PHONE_TEL}`}>
+                      {PHONE_DISPLAY}
+                    </a>{" "}
+                    to reserve your spot.
+                  </div>
+                </div>
+              </Surface>
             </div>
-            <span className="hidden sm:inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white/70">
-              ✦
-            </span>
           </div>
-
-          <div className="mt-5 flex flex-wrap gap-2">
-            {SERVICE_GROUPS.map((g) => (
-              <Chip key={g.key} active={activeKey === g.key} onClick={() => setActiveKey(g.key)}>
-                {g.title}
-              </Chip>
-            ))}
-          </div>
-
-          <div className="mt-6">
-            <div className="flex items-center justify-between gap-4">
-              <div>
-                <div className="text-xl font-semibold">{activeGroup.title}</div>
-                <div className="mt-1 text-sm text-black/55">{activeGroup.subtitle}</div>
-              </div>
-              <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white/70">
-                →
-              </span>
-            </div>
-
-            <div className="mt-5 divide-y divide-black/5">
-              {activeGroup.items.map((item) => (
-                <PriceRow key={item.name} item={item} />
-              ))}
-            </div>
-
-            <div className="mt-6 flex flex-wrap gap-2">
-              <Button variant="ghost" href={activeGroup.href}>
-                View {activeGroup.title} Page
-              </Button>
-              <Button variant="ghost" href="/services">
-                View All Services
-              </Button>
-            </div>
-
-            <div className="mt-5 text-sm text-black/55">
-              Booking tip: call or text{" "}
-              <a className="underline font-semibold" href={`tel:+1${PHONE_TEL}`}>
-                {PHONE_DISPLAY}
-              </a>{" "}
-              to reserve your spot.
-            </div>
-          </div>
-        </Surface>
-      </div>
-    </div>
-  </Container>
-</section>
+        </Container>
+      </section>
 
       <div className="lux-divider" />
 
       {/* ======================
-          Services grid (bold sections)
+          Services
       ======================= */}
       <section className="py-12">
         <Container>
@@ -397,9 +395,7 @@ export default function Page() {
             </div>
 
             <div className="flex gap-2">
-              <Button variant="ghost" href={`sms:+1${PHONE_TEL}`}>
-                Text to Book
-              </Button>
+              <Button variant="ghost" href={`sms:+1${PHONE_TEL}`}>Text to Book</Button>
               <Button href={`tel:+1${PHONE_TEL}`}>Call</Button>
             </div>
           </div>
@@ -436,9 +432,7 @@ export default function Page() {
           </div>
 
           <div className="mt-9 text-center">
-            <Button variant="ghost" href="/services">
-              View all services
-            </Button>
+            <Button variant="ghost" href="/services">View all services</Button>
           </div>
         </Container>
       </section>
@@ -460,9 +454,7 @@ export default function Page() {
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Button href={`tel:+1${PHONE_TEL}`}>Call</Button>
-                <Button variant="ghost" href={`sms:+1${PHONE_TEL}`}>
-                  Text
-                </Button>
+                <Button variant="ghost" href={`sms:+1${PHONE_TEL}`}>Text</Button>
               </div>
             </Surface>
 
@@ -487,9 +479,7 @@ export default function Page() {
 
                 <div className="pt-1 flex flex-wrap gap-3">
                   <Button href={`tel:+1${PHONE_TEL}`}>Call</Button>
-                  <Button variant="ghost" href={`sms:+1${PHONE_TEL}`}>
-                    Text
-                  </Button>
+                  <Button variant="ghost" href={`sms:+1${PHONE_TEL}`}>Text</Button>
                   <Button
                     variant="ghost"
                     href={`https://www.google.com/maps/search/?api=1&query=${MAPS_QUERY}`}
