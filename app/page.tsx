@@ -269,7 +269,7 @@ export default function Page() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/35 to-black/75" />
 
           {/* Content */}
-          <div className="relative z-10 flex h-[72vh] min-h-[540px] flex-col justify-end p-7 sm:p-10 text-white">
+       className="relative z-10 flex h-[55vh] min-h-[420px] flex-col justify-end p-7 sm:p-10 text-white"
             <div className="text-xs tracking-[0.22em] uppercase text-white/80">
               Quiet luxury • hair + beauty
             </div>
