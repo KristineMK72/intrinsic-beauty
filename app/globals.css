@@ -1,241 +1,78 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* =========================================================
-   Intrinsic Beauty — Quiet Luxury System (v2)
-   - warm pearl background + subtle champagne glow
-   - glass surfaces + refined shadows
-   - editorial typography + high-end motion (optional)
-========================================================= */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap");
+@import "tailwindcss";
 
 :root {
-  --ring: 201 162 96; /* champagne gold */
-  --ink: 16 16 18;
-  --pearl: 247 245 241;
-  --paper: 255 255 255;
-
-  /* common RGBA helpers */
-  --stroke-soft: rgba(0, 0, 0, 0.06);
-  --stroke: rgba(0, 0, 0, 0.08);
-  --ink-60: rgba(0, 0, 0, 0.60);
-  --ink-70: rgba(0, 0, 0, 0.70);
-  --ink-45: rgba(0, 0, 0, 0.45);
+  --background: #f8f4ee;
+  --foreground: #1f2937;
+  --muted: #6b7280;
+  --border: #e7ddd2;
+  --card: rgba(255, 255, 255, 0.72);
+  --accent: #a78b7a;
 }
 
-/* ======================
-   Base reset + page
-====================== */
 * {
+  box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
-}
-
-html,
-body {
-  height: 100%;
 }
 
 html {
   scroll-behavior: smooth;
+  background: var(--background);
 }
 
 body {
   margin: 0;
-  color: rgb(var(--ink));
-  font-family: var(--font-body), ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
-    Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-  text-rendering: geometricPrecision;
+  min-height: 100%;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Inter", sans-serif;
+  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  /* Warm pearl + soft spotlighting */
-  background:
-    radial-gradient(1100px 520px at 50% -220px, rgba(201, 162, 96, 0.22), transparent 60%),
-    radial-gradient(900px 460px at 12% 10%, rgba(0, 0, 0, 0.055), transparent 60%),
-    radial-gradient(900px 460px at 88% 18%, rgba(0, 0, 0, 0.045), transparent 60%),
-    linear-gradient(180deg, rgba(247, 245, 241, 1), rgba(243, 241, 237, 1));
 }
 
-/* Typography */
 h1,
 h2,
 h3,
-h4 {
-  font-family: var(--font-display), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+h4,
+.font-serif {
+  font-family: "Playfair Display", serif;
   letter-spacing: -0.02em;
+  color: var(--foreground);
 }
 
 p {
-  color: var(--ink-70);
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
 }
 
 ::selection {
-  background: rgba(201, 162, 96, 0.30);
+  background: rgba(167, 139, 122, 0.22);
 }
 
-/* Underlines should look intentional */
-a {
-  text-underline-offset: 4px;
-}
-
-/* Focus ring polish */
 :focus-visible {
-  outline: 2px solid rgba(201, 162, 96, 0.65);
-  outline-offset: 3px;
-  border-radius: 12px;
+  outline: 2px solid rgba(167, 139, 122, 0.55);
+  outline-offset: 2px;
+  border-radius: 10px;
 }
 
-/* Better anchor spacing under sticky header */
 section {
-  scroll-margin-top: 96px;
-}
-
-/* ======================
-   Luxury primitives
-====================== */
-.lux-kicker {
-  font-family: var(--font-body);
-  font-size: 0.68rem;
-  letter-spacing: 0.34em;
-  text-transform: uppercase;
-  color: var(--ink-45);
-  font-weight: 800;
-}
-
-.lux-divider {
-  height: 1px;
-  width: 100%;
-  background: linear-gradient(to right, transparent, rgba(201, 162, 96, 0.62), transparent);
-}
-
-/* Premium glass surface */
-.lux-surface {
-  position: relative;
-  border-radius: 28px;
-  border: 1px solid var(--stroke-soft);
-
-  /* slightly more depth than before */
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.94),
-    rgba(255, 255, 255, 0.82)
-  );
-
-  box-shadow:
-    0 18px 55px rgba(0, 0, 0, 0.085),
-    0 1px 0 rgba(255, 255, 255, 0.78) inset;
-
-  backdrop-filter: blur(14px);
-}
-
-.lux-surface::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-
-  /* champagne edge glow */
-  box-shadow:
-    0 0 0 1px rgba(201, 162, 96, 0.14) inset,
-    0 12px 40px rgba(201, 162, 96, 0.06);
-
-  opacity: 0.9;
-}
-
-/* Page wrapper class you’re using */
-.sparkle-bg {
-  position: relative;
-  isolation: isolate;
-}
-
-/* Tiny champagne sparkle dots layer */
-.sparkle-bg::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  opacity: 0.16;
-  background:
-    radial-gradient(2px 2px at 10% 18%, rgba(201, 162, 96, 0.55), transparent 60%),
-    radial-gradient(1.5px 1.5px at 28% 32%, rgba(201, 162, 96, 0.45), transparent 60%),
-    radial-gradient(2px 2px at 44% 22%, rgba(201, 162, 96, 0.5), transparent 60%),
-    radial-gradient(1.5px 1.5px at 63% 38%, rgba(201, 162, 96, 0.4), transparent 60%),
-    radial-gradient(2px 2px at 77% 26%, rgba(201, 162, 96, 0.55), transparent 60%),
-    radial-gradient(1.5px 1.5px at 90% 40%, rgba(201, 162, 96, 0.4), transparent 60%),
-    radial-gradient(2px 2px at 18% 70%, rgba(201, 162, 96, 0.45), transparent 60%),
-    radial-gradient(1.5px 1.5px at 52% 66%, rgba(201, 162, 96, 0.38), transparent 60%),
-    radial-gradient(2px 2px at 84% 74%, rgba(201, 162, 96, 0.5), transparent 60%);
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .sparkle-bg::after {
-    animation: shimmer 10s ease-in-out infinite alternate;
-  }
-  @keyframes shimmer {
-    from {
-      opacity: 0.13;
-      filter: blur(0px);
-    }
-    to {
-      opacity: 0.20;
-      filter: blur(0.2px);
-    }
-  }
-}
-
-/* Luxury grain overlay (subtle) */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.055;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg width='180' height='180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.22'/%3E%3C/svg%3E");
-}
-
-/* ======================
-   Hero helpers (use these with your hero)
-====================== */
-
-/* Container look */
-.hero-frame {
-  border-radius: 28px;
-  overflow: hidden;
-  border: 1px solid var(--stroke);
-  box-shadow:
-    0 18px 60px rgba(0, 0, 0, 0.12),
-    0 1px 0 rgba(255, 255, 255, 0.60) inset;
-}
-
-/* Optional cap so the hero never feels “massive” */
-.hero-cap {
-  max-height: 560px;
-}
-
-/* Overlay for readable text */
-.hero-overlay {
-  background:
-    radial-gradient(800px 420px at 20% 15%, rgba(201, 162, 96, 0.18), transparent 55%),
-    linear-gradient(to top, rgba(0, 0, 0, 0.62), rgba(0, 0, 0, 0.22) 42%, rgba(0, 0, 0, 0.08));
-}
-
-/* Cinematic hero motion (toned down) */
-.heroImg {
-  transform: scale(1.02);
-  filter: contrast(1.04) saturate(1.04);
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .heroImg {
-    animation: heroSlowZoom 18s ease-in-out infinite alternate;
-  }
-}
-
-@keyframes heroSlowZoom {
-  from { transform: scale(1.02); }
-  to   { transform: scale(1.06); }
+  scroll-margin-top: 90px;
 }
