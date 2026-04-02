@@ -1,13 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap");
-@import "tailwindcss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #f8f4ee;
-  --foreground: #1f2937;
-  --muted: #6b7280;
-  --border: #e7ddd2;
+  --background: #F8F4EE;
+  --foreground: #1F2937;
+  --muted: #6B7280;
+  --border: #E7DDD2;
   --card: rgba(255, 255, 255, 0.72);
-  --accent: #a78b7a;
+  --accent: #A78B7A;
 }
 
 * {
